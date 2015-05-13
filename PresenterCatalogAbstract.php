@@ -23,10 +23,6 @@ abstract class PresenterCatalogAbstract extends  PresenterAbstract
     /* Thumb */
     public function getImage($size = null, $options = ['crop'])
     {
-//        var_dump($this);
-//        var_dump($this->image);
-//       print_r($this->image->url2());
-//        exit;
         return $this->thumb($this->image, $size, $options);
     }
 
@@ -45,9 +41,6 @@ abstract class PresenterCatalogAbstract extends  PresenterAbstract
         if (strpos($size, 'x')) {
             $size = explode('x', $size);
             if ($image) {
-//                echo 'sffa{';
-//                echo ($image->url());
-//                echo '}';die('stop-werweq');
 
                 return \Thumb::url($image->url(), $size[0], $size[1], $options);
             }

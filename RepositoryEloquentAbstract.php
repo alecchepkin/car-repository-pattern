@@ -38,18 +38,7 @@ abstract class RepositoryEloquentAbstract implements RepositoryInterface
 
     }
 
-//    /**
-//     * @param $attribute
-//     * @param $value
-//     * @param array $width
-//     * @return mixed
-//     */
-//    public function findBy($attribute, $value, $width = [])
-//    {
-//        $eloquent = $this->eloquent->where($attribute, '=', $value)->first($columns);
-//
-//        return $this->makePresenter($eloquent);
-//    }
+
     /**
      * @param $attribute
      * @param $value
@@ -59,8 +48,6 @@ abstract class RepositoryEloquentAbstract implements RepositoryInterface
     public function findBy($attribute, $value, $with = [])
     {
         $eloquent = $this->eloquent->where($attribute, '=', $value)->with($with)->first();
-//        dd('with0', $with);
-//        dd($this->makePresenter($eloquent, $with));
         return $this->makePresenter($eloquent, $with);
 
 
@@ -122,13 +109,9 @@ abstract class RepositoryEloquentAbstract implements RepositoryInterface
             $relation = $eloquent->$name;
             d($eloquent);
             dd($relation);
-//            dd($relation);
             $relations[$name] = $this->makeRelation($relation, $_presenter);
-//            dd($relations[$name]);
-//            dd($relations);
         }
         $presenter = $_presenter->make($eloquent->getAttributes(), $relations);
-//        dd($presenter);
         return $presenter;
 
     }
